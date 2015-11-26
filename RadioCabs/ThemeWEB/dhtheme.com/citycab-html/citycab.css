@@ -99,6 +99,27 @@ h1, h2, h3, h4 {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.inputext {
+
+}
+
+.form-signin {
+  border: 1px solid #f7b926;
+  color: #999;
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 12px;
+  line-height: 20px;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+ }
+
 .btn {
   display: inline-block;
   padding: 11px 22px;
@@ -335,8 +356,16 @@ a:hover {
 .navbar-brand { float: left;  height: 53px;  margin: 0 auto; font-size: 18px; padding: 0px; line-height: 20px;}
 .navbar-brand-fixed { padding: 0px;}
 /* Center the menu here */
-.navbar-nav-center{ float:none; margin: 0 auto; padding: 41px;  display: table;  font-size: 16px;  table-layout: fixed;}
-.navbar-nav-center-fixed{padding: 18px;}
+.navbar-nav-center{ 
+float:none;
+ margin: 0 auto;
+margin-left : 100px; 
+ padding: 41px;  
+ display: table;  
+ font-size: 16px;  
+ table-layout: fixed;
+ }
+.navbar-nav-center-fixed{padding: 15px;}
 /* Set the background color of navbar here */
 .navbar-default { background-color: #fff;}
 /* Set the color of menu text here */
@@ -430,6 +459,9 @@ a:hover {
 .book-taxi .form-horizontal .form-group { margin-right: 0px; margin-left: 0px;}
 .label-left{ padding-right:0px; text-align:left !important; color: #f7b926;}
 .book-taxi .form-control { color: #fff; background: #1a1a1a; border: 1px solid #111;}
+
+
+
 .book-taxi .form-control:focus, .form-control.active { -webkit-box-shadow: 0 0 2px #f7b926; -moz-box-shadow: 0 0 2px #f7b926; box-shadow: 0 0 2px #f7b926;}
 /* Datepicker */
 .ui-widget-header { background-color: #f7b926; color: #fff;}
