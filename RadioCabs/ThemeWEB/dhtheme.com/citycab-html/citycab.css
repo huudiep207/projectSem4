@@ -348,7 +348,7 @@ a:hover {
 /* Set the navbar here */
 .navbar { position: relative;  min-height: 50px;  margin-bottom: 0px;  font-weight: 400;  border-bottom: 1px solid #EDEDED;  color:#000;}
 /* Set the navbar text here */
-.navbar-text { margin: 0 auto;  padding: 39px 0px;  font-size: 31.5px;}
+.navbar-text { margin: 0 auto;  padding: 39px 0px;  font-size: 30px;}
 .navbar-text-fixed { padding: 16px 0px;}
 /* Set the navbar brand here */
 .navbar-header { margin: 0 auto; padding-top: 34px;}
@@ -358,14 +358,13 @@ a:hover {
 /* Center the menu here */
 .navbar-nav-center{ 
 float:none;
- margin: 0 auto;
-margin-left : 100px; 
+ margin: 0 auto; 
  padding: 41px;  
  display: table;  
  font-size: 16px;  
  table-layout: fixed;
  }
-.navbar-nav-center-fixed{padding: 15px;}
+.navbar-nav-center-fixed{padding: 18px;}
 /* Set the background color of navbar here */
 .navbar-default { background-color: #fff;}
 /* Set the color of menu text here */
