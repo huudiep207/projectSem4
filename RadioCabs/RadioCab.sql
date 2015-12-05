@@ -1,7 +1,13 @@
+use master
+go
+if exists (select name from sys.databases where name = 'RadioCab')
+drop database RadioCab
+go
 create database RadioCab
 go
 use RadioCab
 go
+
 create table [User](
 	UserName varchar(50) not null primary key,
 	Pass varchar(50) not null,
@@ -67,8 +73,10 @@ create table PaymentType(
 )
 go
 create table [ExpireDate](
-	UserName varchar(50) not null FOREIGN KEY REFERENCES [User](UserName) primary key,
-	[ExpireDate] date
+	EdId int identity(1,1) not null primary key,
+	UserName varchar(50) not null FOREIGN KEY REFERENCES [User](UserName),
+	[ExpireDate] date,
+	TypeUser int 
 )
 go
 
@@ -76,6 +84,11 @@ create table Payment(
 	PId int identity(1,1) not null primary key,
 	UserName varchar(50) not null FOREIGN KEY REFERENCES [User](UserName),
 	PTId int not null FOREIGN KEY REFERENCES PaymentType(PTId),
-	PaymentDate date
+	PaymentDate date,
+	TypeUser int 
 )
 go
+select * from [User]
+select * from Registration
+select * from Driver
+select * from Advertisement
