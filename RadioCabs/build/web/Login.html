@@ -8,7 +8,7 @@
 	<!-- Meta -->
     <meta name="description" content="SityCab is a taxi company responsive html template.">
 	<meta name="keywords" content="boostrap, responsive, html5, css3, jquery, theme, uikit, multicolor, parallax, retina, taxi business" />
-    <meta name="author" content="dhsign">
+    <meta name="author" content="daw" >
 	<meta name="robots" content="index, follow" />
 	<meta name="revisit-after" content="3 days" />	
     <title>CityCab - Taxi Company Responsive Html Template</title>
@@ -82,107 +82,345 @@
 		</div>
 		<!-- /Main Navigation -->
 	  </header>
-
-      <!-- Gap -->
-      <div id="taxiStripe" class="container-fluid gap-fullsize">
-	  </div>
-	  <!-- /Gap -->  
-
-      <div id="faq" class="container faq">
- 
-        <!-- Form Signin -->	  
+		
+		 <!-- Choose Car -->
+	  <section class="choose-car" id="choose-car">
+        <div class="container">
+	      <div class="row">                        
+            <div class="col-md-12">
+              <div> <h3 class="header header-car">choose your car</h3>
+			  </div>
+			  <div>
+			    <ul class="nav nav-tabs nav-tabs-center cc-nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#town-taxi">Registration</a></li>
+                  <li><a data-toggle="tab" href="#hybrid-taxi">Driver</a></li>
+                  <li><a data-toggle="tab" href="#limousine-taxi">Advertisement</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div id="town-taxi" class="tab-pane fade in active">
+       <!-- Registration -->	  
 	    <div class="row">                        
           <div class="col-md-12">
-			<h1 class="header-fac"><a href="faq.html"> User Signin</a></h1>
+			<h1 class="header-fac"><a href="#"> Registration</a></h1>
 			<hr>
-        		<form class="form-horizontal" role="form" action="form_process/book-now.php" method="post">
+        		<form class="form-horizontal" role="form" action="addRegistration" method="post">
 
                   <div class="form-group">
                     <label class="control-label label-left col-xs-3">User name *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control" id="userName"  placeholder="user name" name="username">
+                      <input type="text" class="form-control" id="userName"  placeholder="user name" name="user" required="">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label label-left col-xs-3">Pass word *</label>
+                    <label class="control-label label-left col-xs-3">Password *</label>
                     <div class="col-xs-9">
-                      <input type="password" class="form-control"  placeholder="pass word" name="password">
+                      <input type="password" class="form-control"  placeholder="pass word" name="pass" required="">
                     </div>
                   </div>
+
+
+				   <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Full name *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder=" full name" name="name" required="">
+                    </div>
+                  </div>				  
 				  
 				  <div class="form-group">
-                    <label class="control-label label-left col-xs-3">Contact Person *</label>
+                    <label class="control-label label-left col-xs-3">Email *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control"  placeholder="contact person" name="contactpsserson">
+                      <input type="text" class="form-control"  placeholder="email" name="email" required="">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label class="control-label label-left col-xs-3" for="phoneNumber">Mobile *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control" id="mobile" placeholder="mobile" name="mobile">
+                      <input type="text" class="form-control" placeholder="mobile" name="mobile" required="">
                     </div>
                   </div>
 				  
 				   <div class="form-group">
                     <label class="control-label label-left col-xs-3" for="phoneNumber">Telephone *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control" id="telephone" placeholder="telephone" name="telephone">
+                      <input type="text" class="form-control" placeholder="telephone" name="telephone" required="">
+                    </div>
+                  </div>
+                  
+                <div class="form-group">
+                    <label class="control-label label-left col-xs-3" for="phoneNumber">Designation *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" placeholder="designation" name="designation" required="">
                     </div>
                   </div>
 				  
 				   <div class="form-group">
                     <label class="control-label label-left col-xs-3">Address *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control"  placeholder="address" name="address">
+                      <input type="text" class="form-control"  placeholder="address" name="address" required="">
                     </div>
                   </div>
 				  
 				   <div class="form-group">
                     <label class="control-label label-left col-xs-3">Fax Number *</label>
                     <div class="col-xs-9">
-                      <input type="text" class="form-control"  placeholder="fax number" name="faxnumber">
+                      <input type="text" class="form-control"  placeholder="fax number" name="fax">
                     </div>
                   </div>
-
-				   <div class="form-group">
-                    <label class="control-label label-left col-xs-3">Email *</label>
-                    <div class="col-xs-9">
-                      <input type="text" class="form-control"  placeholder="email" name="email">
-                    </div>
-                  </div>				  
 				  
 				  <div class="form-group">
                     <label class="control-label label-left col-xs-3">Member Type</label>
                     <div class="col-xs-9">
                       <div class="radio">
-                        <label><input type="radio" name="MemberType" value="Premium">Premium</label>
+                        <label><input type="radio" name="MemberType" value="0" checked="" >Free</label>
                       </div>
                       <div class="radio">
-                        <label><input type="radio" name="MemberType" value="Basic">Basic</label>
+                        <label><input type="radio" name="MemberType" value="1">Basic</label>
                       </div>
                       <div class="radio">
-                        <label><input type="radio" name="MemberType" value="Free">Free</label>
+                        <label><input type="radio" name="MemberType" value="2" >Premium</label>
                       </div>
                     </div>
                   </div>
 				  
                   <div class="form-group">
                     <div class="col-xs-offset-3 col-xs-9">
-                      <button type="submit" class="btn btn-primary">Signin</button>
+                      <button type="submit" class="btn btn-primary" value="add">Sign up</button>
                     </div>
 					
                   </div>
                 </form>
 		  </div>
 		</div>		
-	    <!-- Form Signin -->
+	    <!-- /Registration -->
+				  </div>
+                  
+                  <div id="hybrid-taxi" class="tab-pane fade">
+       <!-- Driver -->	  
+	    <div class="row">                        
+          <div class="col-md-12">
+			<h1 class="header-fac"><a href="#"> Driver Sign up</a></h1>
+			<hr>
+        		<form class="form-horizontal" role="form" action="addDriver" method="post">
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">User name *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" id="userName"  placeholder="user name" name="user" required="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Password *</label>
+                    <div class="col-xs-9">
+                      <input type="password" class="form-control"  placeholder="pass word" name="pass" required="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3" > Display name *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" id="name" placeholder="name" name="name" required="">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Contact Person *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" id="userName"  placeholder="user name" name="user" required="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3" for="phoneNumber">Mobile *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" id="mobile" placeholder="mobile" name="mobile" required="">
+                    </div>
+                  </div>
+				  
+				   <div class="form-group">
+                    <label class="control-label label-left col-xs-3" for="phoneNumber">Telephone *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control" id="telephone" placeholder="telephone" name="telephone" required="">
+                    </div>
+                  </div>
 
 
-        <!-- F.A.Q. -->
-		    
-		<!-- /F.A.Q. -->
+				   <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Email *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="email" name="email" required="">
+                    </div>
+                  </div>			
+                  
+               <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Address *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="address" name="address" required="">
+                    </div>
+                  </div>
+                  
+               <div class="form-group">
+                    <label class="control-label label-left col-xs-3">City *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="city" name="city" required="">
+                    </div>
+                  </div>
+               
+               <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Experience *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="experience" name="exp" required="" >
+                    </div>
+                  </div>
+               
+               <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Description *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="description" name="des" required="">
+                    </div>
+                  </div>                  
+                     	  
+				  
+				  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Member Type</label>
+                    <div class="col-xs-9">
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="0" checked="" >Free</label>
+                      </div>
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="1">Basic</label>
+                      </div>
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="2" >Premium</label>
+                      </div>
+                    </div>
+                  </div>
+				  
+                  <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-9">
+                      <button type="submit" class="btn btn-primary" value="add">Sign up</button>
+                    </div>
+					
+                  </div>
+                </form>
+		  </div>
+		</div>		 <!-- /Driver -->
+				  </div>
+				  
+                  <div id="limousine-taxi" class="tab-pane fade">
+	    <!-- Advertisement -->	  
+	    <div class="row">                        
+          <div class="col-md-12">
+			<h1 class="header-fac"><a href="#"> Advertisement</a></h1>
+			<hr>
+        		<form class="form-horizontal" role="form" action="addAdvertisement" method="post">
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">User name *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="user name" name="user" required="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Password *</label>
+                    <div class="col-xs-9">
+                      <input type="password" class="form-control"  placeholder="password" name="pass" required="">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Email *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="email" name="email" required="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Display name *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="name" name="name" required="">
+                    </div>
+                  </div>      
+                              
+				  		<div class="form-group">
+                    <label class="control-label label-left col-xs-3">Designation *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="designation" name="designation" required="">
+                    </div>
+                  </div> 
+                  
+				  		<div class="form-group">
+                    <label class="control-label label-left col-xs-3">Address *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="address" name="address" required="">
+                    </div>
+                  </div> 
+				  		
+				  		<div class="form-group">
+                    <label class="control-label label-left col-xs-3">Mobile *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="mobile" name="mobile" required="">
+                    </div>
+                  </div>
+                  
+				  		<div class="form-group">
+                    <label class="control-label label-left col-xs-3">Telephone *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="telephone" name="telephone" required="">
+                    </div>
+                  </div> 
+                  
+				  		<div class="form-group">
+                    <label class="control-label label-left col-xs-3">Description *</label>
+                    <div class="col-xs-9">
+                      <input type="text" class="form-control"  placeholder="description" name="description" required="">
+                    </div>
+                  </div>                                     
+				  
+				  <div class="form-group">
+                    <label class="control-label label-left col-xs-3">Member Type</label>
+                    <div class="col-xs-9">
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="0" checked="" >Free</label>
+                      </div>
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="1">Basic</label>
+                      </div>
+                      <div class="radio">
+                        <label><input type="radio" name="MemberType" value="2" >Premium</label>
+                      </div>
+                    </div>
+                  </div>
+				  
+                  <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-9">
+                      <button type="submit" class="btn btn-primary" value="add">Sign up</button>
+                    </div>
+					
+                  </div>
+                </form>
+		  </div>
+		</div>		<!-- /Advertisement -->
+				  </div>
+
+                </div>
+			  </div>
+		    </div>
+		  </div>
+	    </div>
+	  </section>
+	  <!-- /Choose Car -->		
+		
+      <!-- Gap -->
+
+	  <!-- /Gap -->  
+
+
+ 
+
       <!-- Bottom -->
       <section class="bottom" id="bottom">	  
         <div class="container">
