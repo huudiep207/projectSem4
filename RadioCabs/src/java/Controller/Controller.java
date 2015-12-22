@@ -18,11 +18,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author hung
  */
+@ManagedBean(name="controller")
+@SessionScoped
 public class Controller {
     
     public List<Driver> getAllDriver(){
@@ -46,15 +50,14 @@ public class Controller {
                 d.setPaymentType(rs.getInt(11));
                 list.add(d);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
     
     public Driver getDriver(String username){
-        List<Driver> list = new LinkedList<>();
-        String sql = "select * from Driver where UserName =?"+username;
+        String sql = "select * from Driver where UserName ="+username;
         Driver d = new Driver();
         try {
             Connection conn = DBUtils.connection();
@@ -72,13 +75,40 @@ public class Controller {
                 d.setDescription(rs.getString(10));
                 d.setPaymentType(rs.getInt(11));
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return d;
     }
     
-    public List<Registration> getAllRegistration(){
+    public Driver getDriverById(int id){
+        String sql = "select * from Driver where DId ="+id;
+        Driver d = new Driver();
+        try {
+            Connection conn = DBUtils.connection();
+            ResultSet rs = conn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                d.setdId(rs.getInt(1));
+                d.setUsername(rs.getString(2));
+                d.setName(rs.getString(3));
+                d.setContact(rs.getString(4));
+                d.setAddress(rs.getString(5));
+                d.setCity(rs.getString(6));
+                d.setMobile(rs.getString(7));
+                d.setTelephone(rs.getString(8));
+                d.setExp(rs.getString(9));
+                d.setDescription(rs.getString(10));
+                d.setPaymentType(rs.getInt(11));
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
+    }
+    
+    public List<Registration> getAllRegistration() throws InstantiationException, IllegalAccessException{
         List<Registration> list = new LinkedList<>();
         String sql = "select * from Registration";
         try {
@@ -97,6 +127,7 @@ public class Controller {
                 r.setPaymentType(rs.getInt(9));
                 list.add(r);
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +135,7 @@ public class Controller {
     }
     
     public Registration getRegistration(String username){
-        String sql = "select * from Registration where UserName = "+username;
+        String sql = "select * from Registration where UserName ="+username;
         Registration r = new Registration();
         try {
             Connection conn = DBUtils.connection();
@@ -120,7 +151,8 @@ public class Controller {
                 r.setFax(rs.getString(8));
                 r.setPaymentType(rs.getInt(9));
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return r;
@@ -145,7 +177,8 @@ public class Controller {
                 a.setPaymentType(rs.getInt(9));
                 list.add(a);
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
@@ -168,14 +201,15 @@ public class Controller {
                 a.setDescription(rs.getString(8));
                 a.setPaymentType(rs.getInt(9));
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
     }
 
     public boolean addRegistration(Registration r) throws ClassNotFoundException, SQLException {
-        String sql = "insert into Registration values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into Registration values(?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.connection();
             User u = new User();
@@ -185,39 +219,44 @@ public class Controller {
             u.setTypeUser(1);
             if (addUser(u)) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, r.getUsername());
-                pre.setString(2, r.getDesignation());
-                pre.setString(3, r.getName());
-                pre.setString(4, r.getAddress());
-                pre.setString(5, r.getMobile());
-                pre.setString(6, r.getTelephone());
-                pre.setString(7, r.getFax());
-                pre.setInt(8, r.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, r.getUsername());
+                pre.setString(3, r.getDesignation());
+                pre.setString(4, r.getName());
+                pre.setString(5, r.getAddress());
+                pre.setString(6, r.getMobile());
+                pre.setString(7, r.getTelephone());
+                pre.setString(8, r.getFax());
+                pre.setInt(9, r.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             } else if (!checkRegistration(u.getUsername())) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, r.getUsername());
-                pre.setString(2, r.getDesignation());
-                pre.setString(3, r.getName());
-                pre.setString(4, r.getAddress());
-                pre.setString(5, r.getMobile());
-                pre.setString(6, r.getTelephone());
-                pre.setString(7, r.getFax());
-                pre.setInt(8, r.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, r.getUsername());
+                pre.setString(3, r.getDesignation());
+                pre.setString(4, r.getName());
+                pre.setString(5, r.getAddress());
+                pre.setString(6, r.getMobile());
+                pre.setString(7, r.getTelephone());
+                pre.setString(8, r.getFax());
+                pre.setInt(9, r.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
     
-     public boolean addDriver(Driver d) throws ClassNotFoundException, SQLException {
-        String sql = "insert into Driver values(?,?,?,?,?,?,?,?,?,?)";
+    public boolean addDriver(Driver d) throws ClassNotFoundException, SQLException {
+        String sql = "insert into Driver values(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.connection();
             User u = new User();
@@ -227,43 +266,48 @@ public class Controller {
             u.setTypeUser(1);
             if (addUser(u)) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, d.getUsername());
-                pre.setString(2, d.getName());
-                pre.setString(3, d.getContact());
-                pre.setString(4, d.getAddress());
-                pre.setString(5, d.getCity());
-                pre.setString(6, d.getMobile());
-                pre.setString(7, d.getTelephone());
-                pre.setString(8, d.getExp());
-                pre.setString(9, d.getDescription());
-                pre.setInt(10, d.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, d.getUsername());
+                pre.setString(3, d.getName());
+                pre.setString(4, d.getContact());
+                pre.setString(5, d.getAddress());
+                pre.setString(6, d.getCity());
+                pre.setString(7, d.getMobile());
+                pre.setString(8, d.getTelephone());
+                pre.setString(9, d.getExp());
+                pre.setString(10, d.getDescription());
+                pre.setInt(11, d.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             } else if (!checkDriver(u.getUsername())) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, d.getUsername());
-                pre.setString(2, d.getName());
-                pre.setString(3, d.getContact());
-                pre.setString(4, d.getAddress());
-                pre.setString(5, d.getCity());
-                pre.setString(6, d.getMobile());
-                pre.setString(7, d.getTelephone());
-                pre.setString(8, d.getExp());
-                pre.setString(9, d.getDescription());
-                pre.setInt(10, d.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, d.getUsername());
+                pre.setString(3, d.getName());
+                pre.setString(4, d.getContact());
+                pre.setString(5, d.getAddress());
+                pre.setString(6, d.getCity());
+                pre.setString(7, d.getMobile());
+                pre.setString(8, d.getTelephone());
+                pre.setString(9, d.getExp());
+                pre.setString(10, d.getDescription());
+                pre.setInt(11, d.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
      
-     public boolean addAdvertisement(Advertisement a) throws ClassNotFoundException, SQLException {
-        String sql = "insert into Advertisement values(?,?,?,?,?,?,?,?)";
+    public boolean addAdvertisement(Advertisement a) throws ClassNotFoundException, SQLException {
+        String sql = "insert into Advertisement values(?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.connection();
             User u = new User();
@@ -273,40 +317,45 @@ public class Controller {
             u.setTypeUser(1);
             if (addUser(u)) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, a.getUsername());
-                pre.setString(2, a.getDesignation());
-                pre.setString(3, a.getName());
-                pre.setString(4, a.getAddress());
-                pre.setString(5, a.getMobile());
-                pre.setString(6, a.getTelephone());
-                pre.setString(7, a.getDescription());
-                pre.setInt(8, a.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, a.getUsername());
+                pre.setString(3, a.getDesignation());
+                pre.setString(4, a.getName());
+                pre.setString(5, a.getAddress());
+                pre.setString(6, a.getMobile());
+                pre.setString(7, a.getTelephone());
+                pre.setString(8, a.getDescription());
+                pre.setInt(9, a.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             } else if (!checkAdvertisement(u.getUsername())) {
                 PreparedStatement pre = conn.prepareStatement(sql);
-                pre.setString(1, a.getUsername());
-                pre.setString(2, a.getDesignation());
-                pre.setString(3, a.getName());
-                pre.setString(4, a.getAddress());
-                pre.setString(5, a.getMobile());
-                pre.setString(6, a.getTelephone());
-                pre.setString(7, a.getDescription());
-                pre.setInt(8, a.getPaymentType());
+                pre.setString(1, null);
+                pre.setString(2, a.getUsername());
+                pre.setString(3, a.getDesignation());
+                pre.setString(4, a.getName());
+                pre.setString(5, a.getAddress());
+                pre.setString(6, a.getMobile());
+                pre.setString(7, a.getTelephone());
+                pre.setString(8, a.getDescription());
+                pre.setInt(9, a.getPaymentType());
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     public boolean addUser(User u) throws ClassNotFoundException, SQLException {
         if (!checkUser(u.getUsername())) {
-            String sql = "insert into [User] values(?,?,?)";
+            String sql = "insert into User values(?,?,?,?)";
             try {
                 Connection conn = DBUtils.connection();
                 PreparedStatement pre = conn.prepareStatement(sql);
@@ -316,15 +365,18 @@ public class Controller {
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
+                conn.close();
             } catch (ClassNotFoundException | SQLException e) {
                 System.out.println(e.getMessage());
+            } catch (InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return false;
     }
 
     public boolean checkUser(String username) {
-        String sql = "select * from [User]";
+        String sql = "select * from User";
         try {
             Connection conn = DBUtils.connection();
             PreparedStatement pre = conn.prepareStatement(sql);
@@ -334,8 +386,11 @@ public class Controller {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -351,8 +406,11 @@ public class Controller {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -368,8 +426,11 @@ public class Controller {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -385,10 +446,18 @@ public class Controller {
                     return true;
                 }
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public static void main(String[] args) {
+        Controller c = new Controller();
+        System.out.println(c.getDriverById(2));
     }
     
 }

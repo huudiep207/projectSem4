@@ -16,12 +16,15 @@ import java.sql.SQLException;
  */
 public class DBUtils {
     
-    public static Connection connection() throws ClassNotFoundException, SQLException{
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=RadioCab";
-        String user = "sa";
-        String pass = "123456";
-        return DriverManager.getConnection(url, user, pass);
+    public static Connection connection() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException{
+        //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        String url = "jdbc:mysql://localhost/RadioCab?user=root&password=123456";
+        return DriverManager.getConnection(url);
+    }
+    
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        DBUtils.connection().prepareStatement("select * from User");
     }
     
 }
