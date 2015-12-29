@@ -22,6 +22,7 @@
         <link href="assets/css/product.css" rel="stylesheet"/>
         <link href="citycab.css" rel="stylesheet"/>
         <link href='assets/a.css' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'/>
     </h:head>
     <h:body>
         <div class="page-wrapper" id="page-top">
@@ -59,7 +60,13 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="Login.html">Login</a></li>
+                                        <c:if test="${sessionScope.signin==null}">
+                                            <li><a href="signin.xhtml">sign in</a></li>
+                                        </c:if>
+                                        <c:if test="${sessionScope.signin!=null}">
+                                            <a style="background-color: none" href="profile.xhtml">${sessionScope.signin.getUsername()}</a> | <a href="logout">logout</a>
+                                        </c:if>
+                                        
                                     </ul>
                                 </div><!--/.nav-collapse -->
                             </div>
@@ -152,7 +159,7 @@
                                                                                 Phone : ${re.mobile}
                                                                             </span>
                                                                             <div class="sprocket-tables-link sprocket-tables-cell sprocket-tables-bg1">
-                                                                                <a href="#" class="readon">Read More</a>
+                                                                                <a href="registration.xhtml?id=${re.getrId()}" class="readon">Read More</a>
                                                                             </div>
                                                                         </div>
                                                                     </li>
@@ -187,7 +194,7 @@
                                                                                 Phone : ${ad.mobile}
                                                                             </span>
                                                                             <div class="sprocket-tables-link sprocket-tables-cell sprocket-tables-bg1">
-                                                                                <a href="#" class="readon">Read More</a>
+                                                                                <a href="advertisement.xhtml?id=${ad.getaId()}" class="readon">Read More</a>
                                                                             </div>
                                                                         </div>
                                                                     </li>

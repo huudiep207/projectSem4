@@ -158,6 +158,30 @@ public class Controller {
         return r;
     }
     
+    public Registration getRegistrationById(int id){
+        String sql = "select * from Registration where RId ="+id;
+        Registration r = new Registration();
+        try {
+            Connection conn = DBUtils.connection();
+            ResultSet rs = conn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                r.setrId(rs.getInt(1));
+                r.setUsername(rs.getString(2));
+                r.setDesignation(rs.getString(3));
+                r.setName(rs.getString(4));
+                r.setAddress(rs.getString(5));
+                r.setMobile(rs.getString(6));
+                r.setTelephone(rs.getString(7));
+                r.setFax(rs.getString(8));
+                r.setPaymentType(rs.getInt(9));
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
+    
     public List<Advertisement> getAllAdvertisement(){
         List<Advertisement> list = new LinkedList<>();
         String sql = "select * from Advertisement";
@@ -186,6 +210,30 @@ public class Controller {
     
     public Advertisement getAdvertisement(String username){
         String sql = "select * from Advertisement where UserName = "+username;
+        Advertisement a = new Advertisement();
+        try {
+            Connection conn = DBUtils.connection();
+            ResultSet rs = conn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                a.setaId(rs.getInt(1));
+                a.setUsername(rs.getString(2));
+                a.setDesignation(rs.getString(3));
+                a.setName(rs.getString(4));
+                a.setAddress(rs.getString(5));
+                a.setMobile(rs.getString(6));
+                a.setTelephone(rs.getString(7));
+                a.setDescription(rs.getString(8));
+                a.setPaymentType(rs.getInt(9));
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+    
+    public Advertisement getAdvertisementById(int id){
+        String sql = "select * from Advertisement where AId ="+id;
         Advertisement a = new Advertisement();
         try {
             Connection conn = DBUtils.connection();
@@ -362,6 +410,7 @@ public class Controller {
                 pre.setString(1, u.getUsername());
                 pre.setString(2, u.getPass());
                 pre.setString(3, u.getEmail());
+                pre.setInt(4, 1);
                 if (pre.executeUpdate() == 1) {
                     return true;
                 }
@@ -383,6 +432,48 @@ public class Controller {
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 if (rs.getString(1).equals(username)) {
+                    return true;
+                }
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public User getUser(String username) {
+        String sql = "select * from User";
+        User u = new User();
+        try {
+            Connection conn = DBUtils.connection();
+            PreparedStatement pre = conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                u.setUsername(rs.getString(1));
+                u.setPass(rs.getString(2));
+                u.setEmail(rs.getString(3));
+                u.setTypeUser(rs.getInt(4));
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return u;
+    }
+    
+    public boolean checkEmail(String email) {
+        String sql = "select * from User";
+        try {
+            Connection conn = DBUtils.connection();
+            PreparedStatement pre = conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(3).equals(email)) {
                     return true;
                 }
             }
@@ -443,6 +534,26 @@ public class Controller {
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 if (rs.getString(2).equals(username)) {
+                    return true;
+                }
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean signin(User user){
+        String sql = "select * from User";
+        try {
+            Connection conn = DBUtils.connection();
+            PreparedStatement pre = conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(1).equals(user.getUsername()) && rs.getString(2).equals(user.getPass())) {
                     return true;
                 }
             }

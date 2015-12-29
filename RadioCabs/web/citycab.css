@@ -56,6 +56,7 @@ body {
 body.bg {
   background: #fff;
 }
+.navbar-text1 { margin-right: 250px; margin-top: 48px;   font-size: 15px;}
 h1, h2, h3 {
     margin: 0;
 }
@@ -373,9 +374,9 @@ float:none;
 .navbar-default .navbar-nav > li > a { color: #000;	 padding: 10px 25px;}
 .navbar-default .navbar-nav > li > a:active,
 .navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus{  background-color: #f7b926; color: #fff; border-radius: 100px;}
+.navbar-default .navbar-nav > li > a:focus{background-color: #f7b926; color: #fff; border-radius: 100px;}
 /* Set the color and shape of menu buttons here */  
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus { background-color: #f7b926; color: #fff;	border-radius: 100px;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {background-color: #f7b926; color: #fff;	border-radius: 100px;}
 .navbar-default .navbar-toggle {position: absolute; cursor: pointer; top: 30px; right: 57px; width: 48px; height: 48px; font-size: 18px; float: none; text-align: center;  padding: 9px 10px; background-color: #32313b; color: #fff;  border: none; border-radius: 0;}
 .navbar-default .navbar-toggle:focus {outline: none;}
 .navbar-default .navbar-toggle:after {content:'\f0c9'; font-family: FontAwesome; font-size: 25px; }
@@ -431,8 +432,15 @@ float:none;
 /* Styling Choose Car */
 /*--------------------*/
 .choose-car {padding-top: 35px; padding-bottom: 35px;}
+.choose-car1 {padding-top: 35px; padding-bottom: 35px; display:none; }
 .header-car { padding: 0px 0px 25px; text-align: center; font-weight: 300;}
-.header-car::after { margin: -1px auto; background-image: url("images/taxi.png"); background-repeat: no-repeat; content: ""; display: block; height: 6px; position: relative; width: 90px; top: 12px; margin-bottom: 8px;}
+.header-carlogin { padding: 0px 0px 15px; text-align: center; font-weight: 300; color: #f7b926;}
+.header-carlogin::after { color: #f7b926; margin: -1px auto; background-image: url("images/taxi2.png"); background-repeat: no-repeat; content: ""; display: block; height: 6px; position: relative; width: 90px; top: 12px; margin-bottom: 8px;}
+.headerOn { padding: 0px 0px 5px; text-align: center; font-weight: 300;}
+.headerOnly { padding: 0px 0px 5px; text-align: center; font-weight: 300; color: #f7b926;}
+.headerOnly::after { color: #f7b926; margin: -1px auto; display: block; height: 6px; position: relative; width: 90px; }
+
+.header-car::after { margin: -1px auto; background-image: url("images/taxi2.png"); background-repeat: no-repeat; content: ""; display: block; height: 6px; position: relative; width: 90px; top: 12px; margin-bottom: 8px;}
 /* Set the background color of nav-tabs here */
 .cc-nav-tabs { background-color: #fff; border-bottom: 0px;}
 /* Center Car Tabs here */
@@ -455,8 +463,10 @@ float:none;
 .book-now { padding: 0px 0px 25px; text-align: center; font-weight: 300; color: #fff;}
 .book-now::after { margin: -1px auto; background-image: url("images/taxi2.png"); background-repeat: no-repeat; content: ""; display: block; height: 6px; position: relative; width: 90px; top: 12px; margin-bottom: 8px;}
 .radio{ color: #f7b926;}
+.radio1{ color: #f7b926;}
 .book-taxi .form-horizontal .form-group { margin-right: 0px; margin-left: 0px;}
 .label-left{ padding-right:0px; text-align:left !important; color: #f7b926;}
+.label-left1{ padding-left:0px; text-align:right !important; color: #f7b926;}
 .book-taxi .form-control { color: #fff; background: #1a1a1a; border: 1px solid #111;}
 
 
@@ -634,11 +644,10 @@ float:none;
 .contact input[type="text"], .contact input[type="password"], .contact input[type="datetime"], .contact input[type="datetime-local"], .contact input[type="date"], .contact input[type="month"], .contact input[type="time"], .contact input[type="week"], .contact input[type="number"], .contact input[type="email"], .contact input[type="url"], .contact input[type="search"], .contact input[type="tel"], .contact input[type="color"], .contact .uneditable-input { border: 2px solid #000; border-radius: 50px; padding: 10px; width: 100%;}
 .contact textarea{ border: 2px solid #000; border-radius: 20px; padding: 10px; width: 100%;}
 
-/*--------------------------------------------*/
-/* Styling F.A.Q.                             */
-/*--------------------------------------------*/
 .faq {padding-top: 35px; padding-bottom: 35px;}
-.header-fac { padding: 0px 0px 10px; text-align: left; font-weight: 300; font-family: "Montserrat Alternates",sans-serif;}
+.header-fac { padding: 10px 0px 10px; text-align: left; margin-top: 10px; font-weight: 300; font-family: "Montserrat Alternates",sans-serif;}
+.header-center { padding: 10px 0px 10px; text-align: center; margin-top: 10px; font-weight: 300; font-family: "Montserrat Alternates",sans-serif;}
+.header-right { padding: 10px 0px 10px; text-align: right; margin-top: 10px; font-weight: 300; font-family: "Montserrat Alternates",sans-serif;}
 .faq p  {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px;}
 .faq .btn-inverse { color: #fff;}
 .faq h3::after { background-image: url("images/taxi2.png"); background-repeat: no-repeat; content: ""; display: block; height: 6px; margin-bottom: 8px; position: relative; top: 12px; width: 90px;}

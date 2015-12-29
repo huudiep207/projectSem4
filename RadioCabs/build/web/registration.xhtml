@@ -85,49 +85,45 @@ and open the template in the editor.
 
             <!-- Who Are We -->
             <c:set var="id" value="${param.id}"/>
-            <c:set var="d" value="${controller.getDriverById(id)}"/>
+            <c:set var="r" value="${controller.getRegistrationById(id)}"/>
             <section class="professional-company" id="professionalCompany">
                 <div class="container">
                     <div class="row">                        
                         <div class="col-md-12">
-                            <h3 class="header header-car">Drivers</h3>
+                            <h3 class="header header-car">Registrations</h3>
                         </div>
                     </div>
                     <c:if test="${param.id != null}">
                         <div class="row">                        
                             <div class="col-md-6">
                                 <div>
-                                    <p><img class="uk-text-center"  src="images/suv.jpg"/>
+                                    <p><img class="uk-text-center" width="30%" style="float: right; margin-right: 10%"  src="images/regis.png"/>
                                     </p>			  
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h4 class="text-center uk-text-black">Name : ${d.name}</h4>
-                                <p class="uk-panel-p-5">City : ${d.city}</p>
-                                <p class="uk-panel-p-5">Contact : ${d.contact}</p>
-                                <p class="uk-panel-p-5">Phone : ${d.telephone}</p>
-                                <p class="uk-panel-p-5">Experience : ${d.exp}</p>
-                                <p class="uk-panel-p-5">Description : ${d.description}</p>
+                                <p class="uk-panel-p-5">Name : ${r.name}</p>
+                                <p class="uk-panel-p-5">Designation : ${r.designation}</p>
+                                <p class="uk-panel-p-5">Phone : ${r.mobile}</p>
+                                <p class="uk-panel-p-5">Fax : ${r.fax}</p>
                             </div>
                         </div>
                         <hr/>
                     </c:if>
                     <c:if test="${param.id == null}">
-                        <c:forEach var="dri" items="${controller.allDriver}">
+                        <c:forEach var="re" items="${controller.allRegistration}">
                             <div class="row">                        
                                 <div class="col-md-6">
                                     <div>
-                                        <p><img class="uk-text-center"  src="images/suv.jpg"/>
+                                        <p><img class="uk-text-center" width="30%" style="float: right; margin-right: 10%"  src="images/regis.png"/>
                                         </p>			  
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="text-center uk-text-black">Name : ${dri.name}</h4>
-                                    <p class="uk-panel-p-5">City : ${dri.city}</p>
-                                    <p class="uk-panel-p-5">Contact : ${dri.contact}</p>
-                                    <p class="uk-panel-p-5">Phone : ${dri.telephone}</p>
-                                    <p class="uk-panel-p-5">Experience : ${dri.exp}</p>
-                                    <p class="uk-panel-p-5">Description : ${dri.description}</p>
+                                    <p class="uk-panel-p-5">Name : ${re.name}</p>
+                                    <p class="uk-panel-p-5">Designation : ${re.designation}</p>
+                                    <p class="uk-panel-p-5">Phone : ${re.mobile}</p>
+                                    <p class="uk-panel-p-5">Fax : ${re.fax}</p>
                                 </div>
                             </div>
                             <hr/>
